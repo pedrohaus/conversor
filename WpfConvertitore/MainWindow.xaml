@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfConvertitore.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfConvertitore"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="1" Grid.Column="1" FontSize="24">Importo</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ValueInput}"></TextBox>
+        <Label Grid.Row="1" Grid.Column="2" FontSize="24">Da</Label>
+        <ComboBox Grid.Row="2" Grid.Column="2" ItemsSource="{Binding Monete}" SelectedItem="{Binding ValoreSelezionatoDa}"></ComboBox>
+        <Label Grid.Row="1" Grid.Column="3" FontSize="24">A</Label>
+        <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Monete}" SelectedItem="{Binding valoreSelezionataA}"></ComboBox>
+        <Button Grid.Row="1" Grid.Column="5" FontSize="24" Click="Convertire_Click">Convertire</Button>
+        <Label Grid.Row="1" Grid.Column="6" Content="{Binding Risultato}"></Label>
+        <Button Grid.Row="2" Grid.Column="5" FontSize="24" Click="Scambio_Click">Scambio</Button>
+    </Grid>
+</Window>
