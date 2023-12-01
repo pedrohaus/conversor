@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,8 @@ namespace WpfConvertitore
             InitializeComponent();
             vm = new ConvertitoreViewModel();
             DataContext = vm;
+
+            vm.Monete = new ObservableCollection<string> { "DEM", "ITL", "FRF" };
         }
 
         private void Convertire_Click(object sender, RoutedEventArgs e)

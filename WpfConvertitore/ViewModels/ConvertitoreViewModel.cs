@@ -5,6 +5,7 @@ using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfConvertitore.ViewModels
 {
@@ -53,6 +54,40 @@ namespace WpfConvertitore.ViewModels
 
             //MonetaSelezionata = Monete.FirstOrDefault();
         }
+
+        public void ConvertireMoneta(object parameter)
+        {
+            if (double.TryParse(ValueInput.ToString(), out double valor))
+            {
+                string moedaDe = ValoreSelezionatoDa;
+                string moedaPara = ValoreSelezionataA;
+
+                if (!string.IsNullOrEmpty(moedaDe) && !string.IsNullOrEmpty(moedaPara))
+                {
+                    try
+                    {
+                        // Chamar o serviço WCF ou qualquer outra lógica necessária
+                        double resultado = // Lógica de conversão;
+
+                        // Atualizar o resultado na ViewModel
+                        Risultato = $"Valore convertito: {Risultato}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selezionare le valute di origine e destinazione.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Inserire un valore valido.");
+            }
+        }
+    }
 
     }
 }
