@@ -26,13 +26,21 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="1" Grid.Column="1" FontSize="24">Importo</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ValueInput}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding VueInput, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Label Grid.Row="1" Grid.Column="2" FontSize="24">Da</Label>
-        <ComboBox Grid.Row="2" Grid.Column="2" ItemsSource="{Binding Monete}" SelectedItem="{Binding ValoreSelezionatoDa}"></ComboBox>
+        <ComboBox Grid.Row="2" Grid.Column="2" SelectedItem="{Binding MonetaDa, Mode=TwoWay}">
+            <ComboBoxItem Content="Real"/>
+            <ComboBoxItem Content="Euro"/>
+            <ComboBoxItem Content="Dolar"/>
+        </ComboBox>
         <Label Grid.Row="1" Grid.Column="3" FontSize="24">A</Label>
-        <ComboBox Grid.Row="2" Grid.Column="3" ItemsSource="{Binding Monete}" SelectedItem="{Binding valoreSelezionataA}"></ComboBox>
+        <ComboBox Grid.Row="2" Grid.Column="3" SelectedItem="{Binding MonetaA, Mode=TwoWay}">
+            <ComboBoxItem Content="Real"/>
+            <ComboBoxItem Content="Euro"/>
+            <ComboBoxItem Content="Dolar"/>
+        </ComboBox>
         <Button Grid.Row="1" Grid.Column="5" FontSize="24" Click="Convertire_Click">Convertire</Button>
-        <Label Grid.Row="1" Grid.Column="6" Content="{Binding Risultato}"></Label>
+        <Label Grid.Row="1" Grid.Column="6" ></Label>
         <Button Grid.Row="2" Grid.Column="5" FontSize="24" Click="Scambio_Click">Scambio</Button>
     </Grid>
 </Window>

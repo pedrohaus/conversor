@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace WpfConvertitore.ViewModels
 {
     internal class ConvertitoreViewModel : BaseViewModel
     {
-        public ObservableCollection<string> Monete { get; set; }    
+        public ObservableCollection<string> Monete { get; set; }
         public String MonetaSelezionata { get; set; }
 
         private double _risultato;
@@ -30,64 +31,48 @@ namespace WpfConvertitore.ViewModels
             set { _valueInput = value; PropChanged("ValueInput"); }
         }
 
-        private double _valoreSelezionatoDa;
+        private string _monetaDa;
 
-        public double ValoreSelezionatoDa
+        public string MonetaDa
         {
-            get { return _valoreSelezionatoDa; }
-            set { _valoreSelezionatoDa = value; PropChanged("ValoreSelezionatoDa"); }
+            get { return _monetaDa; }
+            set { _monetaDa = value; PropChanged("_monetaDa"); }
         }
 
-        private double _valoreSelezionatoA;
-        public double ValoreSelezionatoA
+        private string _monetaA;
+        public string MonetaA
         {
-            get { return _valoreSelezionatoA; }
-            set { _valoreSelezionatoA = value; PropChanged("ValoreSelezionatoA"); }
+            get { return _monetaA; }
+            set { _monetaA = value; PropChanged("_monetaA"); }
         }
 
-
-
-
-        public ConvertitoreViewModel()
+        private readonly Dictionary<string, double> taxasDeCambio = new Dictionary<string, double>
         {
-            Monete = new ObservableCollection<string>() { "DML", "ITL", "FRF"};
+            { "Real", 1.0 },
+            { "Euro", 4.56 },
+            { "Dólar", 3.25 }
+        };
 
-            //MonetaSelezionata = Monete.FirstOrDefault();
-        }
-
-        public void ConvertireMoneta(object parameter)
+        public void ConvertireMoneta()
         {
-            if (double.TryParse(ValueInput.ToString(), out double valor))
+            if (taxasDeCambio.ContainsKey(MonetaDa) && taxasDeCambio.ContainsKey(MonetaA))
             {
-                string moedaDe = ValoreSelezionatoDa;
-                string moedaPara = ValoreSelezionataA;
+                double taxaDeCambioDe = taxasDeCambio[MonetaDa];
+                double taxaDeCambioPara = taxasDeCambio[MonetaA];
 
-                if (!string.IsNullOrEmpty(moedaDe) && !string.IsNullOrEmpty(moedaPara))
-                {
-                    try
-                    {
-                        // Chamar o serviço WCF ou qualquer outra lógica necessária
-                        double resultado = // Lógica de conversão;
-
-                        // Atualizar o resultado na ViewModel
-                        Risultato = $"Valore convertito: {Risultato}";
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erro: {ex.Message}");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Selezionare le valute di origine e destinazione.");
-                }
+                Risultato = ValueInput * (taxaDeCambioPara / taxaDeCambioDe);
             }
             else
             {
-                MessageBox.Show("Inserire un valore valido.");
+                Risultato = ValueInput; // Se não houver taxa de câmbio, manter o valor original
             }
         }
-    }
 
+        public ConvertitoreViewModel()
+        {
+            //Monete = new ObservableCollection<string>() { "DML", "ITL", "FRF" };
+
+            //MonetaSelezionata = Monete.FirstOrDefault();
+        }
     }
 }
