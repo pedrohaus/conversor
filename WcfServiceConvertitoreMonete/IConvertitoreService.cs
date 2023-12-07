@@ -24,7 +24,7 @@ namespace WcfServiceConvertitoreMonete
             double tassaDa = OtenereTassaCambio(monetaDa);
             double tassaA = OtenereTassaCambio(monetaA);
 
-            double valoreConvertito = valore * tassaDa / tassaA;
+            double valoreConvertito = valore * (tassaDa / tassaA);
             
             return valoreConvertito;
             //return valore * OtenereTassaCambio(monetaDa) / OtenereTassaCambio(monetaA);

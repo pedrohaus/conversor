@@ -29,7 +29,7 @@ namespace WpfConvertitore
             vm = new ConvertitoreViewModel();
             DataContext = vm;
 
-            vm.Monete = new ObservableCollection<string> { "DEM", "ITL", "FRF" };
+            //vm.Monete = new ObservableCollection<string> { "Real", "Euro", "Dolar" };
         }
 
         private void Convertire_Click(object sender, RoutedEventArgs e)

@@ -36,31 +36,31 @@ namespace WpfConvertitore.ViewModels
         public string MonetaDa
         {
             get { return _monetaDa; }
-            set { _monetaDa = value; PropChanged("_monetaDa"); }
+            set { _monetaDa = value; PropChanged("MonetaDa"); }
         }
 
         private string _monetaA;
         public string MonetaA
         {
             get { return _monetaA; }
-            set { _monetaA = value; PropChanged("_monetaA"); }
+            set { _monetaA = value; PropChanged("MonetaA"); }
         }
 
-        private readonly Dictionary<string, double> taxasDeCambio = new Dictionary<string, double>
+        private readonly Dictionary<string, double> tassaDiCambio = new Dictionary<string, double>
         {
-            { "Real", 1.0 },
-            { "Euro", 4.56 },
-            { "Dólar", 3.25 }
+            { "DEM", 1.0 },
+            { "ITL", 4.56 },
+            { "FRF", 3.25 }
         };
 
         public void ConvertireMoneta()
         {
-            if (taxasDeCambio.ContainsKey(MonetaDa) && taxasDeCambio.ContainsKey(MonetaA))
+            if (tassaDiCambio.ContainsKey(MonetaDa) && tassaDiCambio.ContainsKey(MonetaA))
             {
-                double taxaDeCambioDe = taxasDeCambio[MonetaDa];
-                double taxaDeCambioPara = taxasDeCambio[MonetaA];
+                double tassaDiCambioDa = tassaDiCambio[MonetaDa];
+                double tassaDiCambioA = tassaDiCambio[MonetaA];
 
-                Risultato = ValueInput * (taxaDeCambioPara / taxaDeCambioDe);
+                Risultato = ValueInput * (tassaDiCambioA / tassaDiCambioDa);
             }
             else
             {
